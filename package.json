@@ -1,0 +1,39 @@
+{
+  "name": "sschool",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "educational web application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node backend/app.js",
+    "dev": "set NODE_ENV=DEVELOPMENT& nodemon backend/app.js",
+    "prod": "set NODE_ENV=PRODUCTION& nodemon backend/app.js",
+    "seeder": "node backend/seeder/seeder.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaryabkhan864/Sschool.git"
+  },
+  "keywords": [
+    "smart",
+    "school",
+    "sms"
+  ],
+  "author": "zaryabkhan864",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zaryabkhan864/Sschool/issues"
+  },
+  "homepage": "https://github.com/zaryabkhan864/Sschool#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.5.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.8.1",
+    "nodemon": "^3.1.7"
+  }
+}
