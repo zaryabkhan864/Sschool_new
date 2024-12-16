@@ -5,7 +5,7 @@ import Loader from "../layout/Loader";
 
 const ProtectedRoute = ({ isAdmin, element }) => {
     const { isAuthenticated, loading, user } = useSelector((state) => state.auth);
-    console.log("test from ProtectedRoute user, isAuthenticated, Loading", user, isAuthenticated, loading);
+
 
     if (loading) return <Loader />; // Or a loader component
 

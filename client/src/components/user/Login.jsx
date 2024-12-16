@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from 'react';
-
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
@@ -7,7 +6,6 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { login, clearErrors } from "../../actions/userActions";
 import loginImage from "../../assets/loginImage.png";
-
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -19,20 +17,26 @@ const Login = () => {
     const location = useLocation();
 
     const { isAuthenticated, error, loading, user } = useSelector((state) => state?.auth);
-    console.log("test from Login user, isAuthenticated, Loading", user, isAuthenticated, loading);
-    // const { user = {}, isAuthenticated, error, loading } = useSelector((state) => state.auth);
-    const redirect = new URLSearchParams(location.search).get("redirect") || "/dashboard";
+
+    // Get redirect path or default to "/dashboard"
+    const redirect = new URLSearchParams(location.search).get("redirect") || "/";
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate(redirect);
+            // If the user is an admin, redirect to the dashboard
+            if (user?.role === "admin") {
+                navigate("/dashboard");
+            } else {
+                // Redirect to the intended path or home for non-admin users
+                navigate(redirect);
+            }
         }
 
         if (error) {
             alert.error(error);
             dispatch(clearErrors());
         }
-    }, [dispatch, alert, isAuthenticated, error, navigate, redirect]);
+    }, [dispatch, alert, isAuthenticated, error, navigate, redirect, user]);
 
     const submitHandler = (e) => {
         e.preventDefault();
